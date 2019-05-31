@@ -1,27 +1,27 @@
 const {GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema, GraphQLID, GraphQLList, GraphQLNonNull} = require('graphql');
-const _ = require('lodash');
+// const _ = require('lodash');
 const Book = require('../models/book');
 const Author = require('../models/author');
 
-const books = [
-    {id:"1", name:'Where the Wild Things Are', category:'Non-Fiction', authorId:'1'},
-    {id:"2", name:"The Very Hungry Caterpillar",  category:'Fiction', authorId:'2'},
-    {id:"3", name:"The Giving Tree",  category:'Fiction', authorId:'3'},
-    {id:"4", name:"Where the Sidewalk Ends",  category:'Non-Fiction', authorId:'3'},
-    {id:"5", name:"A Light in the Attic",  category:'Fiction', authorId:'3'},
-    {id:"6", name:"The Very Busy Spider",  category:'Fiction', authorId:'2'},
-    {id:"7", name:"The Grouchy Ladybug ",  category:'Fiction', authorId:'2'},
-    {id:"8", name:"From Head to Toe",  category:'Non-Fiction', authorId:'2'},
-    {id:"9", name:"The Cat in the Hat",  category:'Fiction', authorId:'4'},
-    {id:"10", name:"Green Eggs and Ham",  category:'Fiction', authorId:'4'}
-]
+// const books = [
+//     {id:"1", name:'Where the Wild Things Are', category:'Non-Fiction', authorId:'1'},
+//     {id:"2", name:"The Very Hungry Caterpillar",  category:'Fiction', authorId:'2'},
+//     {id:"3", name:"The Giving Tree",  category:'Fiction', authorId:'3'},
+//     {id:"4", name:"Where the Sidewalk Ends",  category:'Non-Fiction', authorId:'3'},
+//     {id:"5", name:"A Light in the Attic",  category:'Fiction', authorId:'3'},
+//     {id:"6", name:"The Very Busy Spider",  category:'Fiction', authorId:'2'},
+//     {id:"7", name:"The Grouchy Ladybug ",  category:'Fiction', authorId:'2'},
+//     {id:"8", name:"From Head to Toe",  category:'Non-Fiction', authorId:'2'},
+//     {id:"9", name:"The Cat in the Hat",  category:'Fiction', authorId:'4'},
+//     {id:"10", name:"Green Eggs and Ham",  category:'Fiction', authorId:'4'}
+// ]
 
-const authors = [
-    {id:'1', name:'Maurice Sendak', birth:'June 10, 1928'},
-    {id:'2', name:'Eric Carle', birth:'June 25, 1929'},
-    {id:'3', name:'Shel Silverstein', birth:'Septemper 25, 1930'},
-    {id:'4', name:'Dr. Seuss', birth:'March 2, 1904'}
-]
+// const authors = [
+//     {id:'1', name:'Maurice Sendak', birth:'June 10, 1928'},
+//     {id:'2', name:'Eric Carle', birth:'June 25, 1929'},
+//     {id:'3', name:'Shel Silverstein', birth:'Septemper 25, 1930'},
+//     {id:'4', name:'Dr. Seuss', birth:'March 2, 1904'}
+// ]
 const BookType = new GraphQLObjectType({
     name:'Book',
     fields:()=>({
@@ -46,7 +46,6 @@ const AuthorType = new GraphQLObjectType({
         book:{
             type:new GraphQLList(BookType),
             resolve(parentValue, args){
-                console.log(parentValue, args)
                 return Book.find({authorId:parentValue._id})
             }
         }

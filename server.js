@@ -3,11 +3,12 @@ const graphqlHTTP = require('express-graphql');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const schema = require('./schema/schema');
+const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 const app = express();
 dotenv.config();
 const mongoDB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0-btzl5.mongodb.net/${process.env.MONGO_DATABASE}`;
-
+app.use(cors());
 app.use('/graphql', graphqlHTTP({
     schema,
     graphiql:true    
